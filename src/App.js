@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from "react";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";   // ✅ Added Footer
 import HomePage from "./pages/Home";
@@ -27,7 +28,6 @@ import CampaignList from "./pages/CampaignList";
 import Media from "./pages/Media";
 import MediaUploadForm from "./components/MediaUploadForm";
 import MediaList from "./components/MediaList";
-import { HashRouter as Router } from "react-router-dom";
 
 import "./i18n";
 import "./custom.css";
