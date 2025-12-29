@@ -2,8 +2,9 @@ import React from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import ProtectedRoute from "./components/ProtectedRoute"; // new wrapper
 
-// Public Pages
+// Public Pages (only accessible after login)
 import HomePage from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import OurWork from "./pages/OurWork";
@@ -16,7 +17,7 @@ import ContactUs from "./pages/ContactUs";
 import DonatePage from "./pages/DonatePage";
 
 // Admin / Forms
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard";          // Admin Dashboard
 import VolunteerForm from "./pages/VolunteerForm";
 import PartnerForm from "./pages/PartnerForm";
 import FundraiseForm from "./pages/FundraiseForm";
@@ -28,6 +29,11 @@ import CampaignCreateForm from "./pages/CampaignCreateForm";
 import CampaignJoinForm from "./pages/CampaignJoinForm";
 import CampaignsPage from "./pages/CampaignsPage";
 import CommunitySubscribe from "./pages/CommunitySubscribe";
+
+// Authentication Pages
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";  // User Dashboard
 
 // Extra Components
 import DonationsList from "./components/DonationsList";
@@ -42,56 +48,75 @@ import "./App.css";
 export default function App() {
   return (
     <Router>
-      <div className="d-flex flex-column min-vh-100">
-        {/* NGO Branding */}
-        <header className="text-center py-3 bg-primary text-light">
-          <h1 className="m-0">Helping Hands Foundation</h1>
-        </header>
+      <Routes>
+        {/* Authentication Routes */}
+        <Route path="/" element={<LoginPage />} /> {/* Default entry point */}
+        <Route path="/register" element={<RegisterPage />} />
 
-        {/* Navigation Bar */}
-        <NavBar />
+        {/* Protected Routes (only visible after login) */}
+        <Route
+          path="/*"
+          element={
+            <ProtectedRoute>
+              <div className="d-flex flex-column min-vh-100">
+                {/* NGO Branding */}
+                <header className="text-center py-3 bg-primary text-light">
+                  <h1 className="m-0">Helping Hands Foundation</h1>
+                </header>
 
-        {/* Page Content */}
-        <main className="flex-grow-1">
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/work" element={<OurWork />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/media" element={<Media />} />
-            <Route path="/get-involved" element={<GetInvolved />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:id" element={<BlogDetail />} />
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/donate" element={<DonatePage />} />
+                {/* Navigation Bar */}
+                <NavBar />
 
-            {/* Admin / Dashboard Routes */}
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/volunteer" element={<VolunteerPage />} />
-            <Route path="/volunteer/form" element={<VolunteerForm />} />
-            <Route path="/partner" element={<PartnerForm />} />
-            <Route path="/fundraise" element={<FundraiseForm />} />
-            <Route path="/campaigns" element={<CampaignsPage />} />
-            <Route path="/campaigns/create" element={<CampaignCreateForm />} />
-            <Route path="/campaigns/list" element={<CampaignList />} />
-            <Route path="/campaigns/:id" element={<CampaignDetail />} />
-            <Route path="/campaigns/:id/join" element={<CampaignJoinForm />} />
-            <Route path="/campaign-participants" element={<CampaignParticipationList />} />
-            <Route path="/subscribe" element={<CommunitySubscribe />} />
-            <Route path="/subscribers" element={<SubscriptionList />} />
-            <Route path="/donations" element={<DonationsList />} />
-            <Route path="/media/upload" element={<MediaUploadForm />} />
-            <Route path="/media/list" element={<MediaList />} />
+                {/* Page Content */}
+                <main className="flex-grow-1">
+                  <Routes>
+                    {/* Public Pages */}
+                    <Route path="/home" element={<HomePage />} />
+                    <Route path="/about" element={<AboutUs />} />
+                    <Route path="/work" element={<OurWork />} />
+                    <Route path="/projects" element={<Projects />} />
+                    <Route path="/media" element={<Media />} />
+                    <Route path="/get-involved" element={<GetInvolved />} />
+                    <Route path="/blog" element={<BlogPage />} />
+                    <Route path="/blog/:id" element={<BlogDetail />} />
+                    <Route path="/contact" element={<ContactUs />} />
+                    <Route path="/donate" element={<DonatePage />} />
 
-            {/* Fallback */}
-            <Route path="*" element={<HomePage />} />
-          </Routes>
-        </main>
+                    {/* User Dashboard */}
+                    <Route path="/user-dashboard" element={<DashboardPage />} />
 
-        {/* Footer */}
-        <Footer />
-      </div>
+                    {/* Admin Dashboard */}
+                    <Route path="/admin-dashboard" element={<Dashboard />} />
+
+                    {/* Admin / Forms */}
+                    <Route path="/volunteer" element={<VolunteerPage />} />
+                    <Route path="/volunteer/form" element={<VolunteerForm />} />
+                    <Route path="/partner" element={<PartnerForm />} />
+                    <Route path="/fundraise" element={<FundraiseForm />} />
+                    <Route path="/campaigns" element={<CampaignsPage />} />
+                    <Route path="/campaigns/create" element={<CampaignCreateForm />} />
+                    <Route path="/campaigns/list" element={<CampaignList />} />
+                    <Route path="/campaigns/:id" element={<CampaignDetail />} />
+                    <Route path="/campaigns/:id/join" element={<CampaignJoinForm />} />
+                    <Route path="/campaign-participants" element={<CampaignParticipationList />} />
+                    <Route path="/subscribe" element={<CommunitySubscribe />} />
+                    <Route path="/subscribers" element={<SubscriptionList />} />
+                    <Route path="/donations" element={<DonationsList />} />
+                    <Route path="/media/upload" element={<MediaUploadForm />} />
+                    <Route path="/media/list" element={<MediaList />} />
+
+                    {/* Fallback */}
+                    <Route path="*" element={<HomePage />} />
+                  </Routes>
+                </main>
+
+                {/* Footer */}
+                <Footer />
+              </div>
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
     </Router>
   );
 }

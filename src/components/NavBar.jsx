@@ -1,10 +1,26 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { logoutUser } from "../services/api"; // import logout API
 
 export default function NavBar() {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
+
+  // For demo: replace with real auth state (e.g., context or Redux)
+  const isLoggedIn = localStorage.getItem("token"); 
+  const isAdmin = localStorage.getItem("isAdmin"); // set this after login if user is admin
+
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      localStorage.removeItem("token");
+      localStorage.removeItem("isAdmin");
+      navigate("/login"); // redirect to login after logout
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
@@ -58,6 +74,48 @@ export default function NavBar() {
                 </NavLink>
               </li>
             ))}
+
+            {/* Show Register/Login if not logged in */}
+            {!isLoggedIn && (
+              <>
+                <li className="nav-item">
+                  <NavLink to="/register" className="nav-link">
+                    Register
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/login" className="nav-link">
+                    Login
+                  </NavLink>
+                </li>
+              </>
+            )}
+
+            {/* Show Dashboards + Logout if logged in */}
+            {isLoggedIn && (
+              <>
+                <li className="nav-item">
+                  <NavLink to="/user-dashboard" className="nav-link">
+                    User Dashboard
+                  </NavLink>
+                </li>
+                {isAdmin && (
+                  <li className="nav-item">
+                    <NavLink to="/admin-dashboard" className="nav-link">
+                      Admin Dashboard
+                    </NavLink>
+                  </li>
+                )}
+                <li className="nav-item">
+                  <button
+                    className="btn btn-outline-danger btn-sm ms-3"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
+            )}
 
             {/* Language Switcher */}
             <li className="nav-item ms-3">

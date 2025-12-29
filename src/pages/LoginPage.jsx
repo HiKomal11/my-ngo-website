@@ -17,16 +17,12 @@ function LoginPage() {
       const res = await loginUser(formData);
 
       if (res.message === "Login successful") {
-        // Example: backend should return role info (e.g., res.isAdmin)
-        // For now, simulate role check
-        const isAdmin = res.isAdmin || false;
-
-        // Save login state in localStorage
-        localStorage.setItem("token", "dummy-session-token"); // replace with real token if backend provides
-        localStorage.setItem("isAdmin", isAdmin);
+        // Save login state
+        localStorage.setItem("token", "dummy-session-token");
+        localStorage.setItem("isAdmin", res.isAdmin || false);
 
         // Redirect based on role
-        if (isAdmin) {
+        if (res.isAdmin) {
           navigate("/admin-dashboard");
         } else {
           navigate("/user-dashboard");
@@ -40,9 +36,9 @@ function LoginPage() {
   };
 
   return (
-    <div className="container py-5">
+    <div className="container py-5 text-center">
       <h2 className="fw-bold text-primary">Login</h2>
-      <form onSubmit={handleSubmit} className="mt-3">
+      <form onSubmit={handleSubmit} className="mt-3 mx-auto" style={{ maxWidth: "400px" }}>
         <div className="mb-3">
           <input
             name="username"
@@ -60,10 +56,22 @@ function LoginPage() {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary w-100">
           Login
         </button>
       </form>
+
+      {/* Register Button */}
+      <div className="mt-4">
+        <p>New user? Register below:</p>
+        <button
+          className="btn btn-outline-secondary w-100"
+          onClick={() => navigate("/register")}
+        >
+          Register as New User
+        </button>
+      </div>
+
       {message && <p className="mt-3 text-danger">{message}</p>}
     </div>
   );
