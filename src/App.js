@@ -27,6 +27,7 @@ import CampaignList from "./pages/CampaignList";
 import Media from "./pages/Media";
 import MediaUploadForm from "./components/MediaUploadForm";
 import MediaList from "./components/MediaList";
+import { HashRouter as Router } from "react-router-dom";
 
 import "./i18n";
 import "./custom.css";
