@@ -18,7 +18,6 @@ export default function BlogPage() {
       })
       .catch((err) => {
         console.error("Error fetching blogs:", err);
-        setError("❌ Unable to load blogs. Please try again later.");
         setLoading(false);
       });
   }, []);
