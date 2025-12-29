@@ -1,8 +1,7 @@
 import React from "react";
-
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";   // ✅ Added Footer
+import Footer from "./components/Footer";
 import HomePage from "./pages/Home";
 import About from "./pages/AboutUs";
 import Work from "./pages/OurWork";
@@ -35,7 +34,7 @@ import "./App.css";
 
 export default function App() {
   return (
-    <Router basename="/my-ngo-website">
+    <Router>
       <div className="d-flex flex-column min-vh-100">
         {/* NGO Branding */}
         <header className="text-center py-3 bg-primary text-light">
