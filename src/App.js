@@ -72,6 +72,7 @@ export default function App() {
             <Route path="/media/upload" element={<MediaUploadForm />} />
             <Route path="/media/list" element={<MediaList />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<HomePage />} />
           </Routes>
         </main>
 
