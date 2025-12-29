@@ -34,7 +34,7 @@ import "./App.css";
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/my-ngo-website">
       <div className="d-flex flex-column min-vh-100">
         {/* NGO Branding */}
         <header className="text-center py-3 bg-primary text-light">
@@ -72,7 +72,6 @@ export default function App() {
             <Route path="/media/upload" element={<MediaUploadForm />} />
             <Route path="/media/list" element={<MediaList />} />
             <Route path="/contact" element={<Contact />} />
-           
           </Routes>
         </main>
 
