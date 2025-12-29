@@ -4,18 +4,49 @@ import axios from "axios";
 const api = axios.create({
   baseURL:
     process.env.REACT_APP_API_BASE ||
-    "https://ngo-cms-backend-5oez.onrender.com",
+    "https://ngo-cms-backend-5oez.onrender.com/api", // keep /api here
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-// ------------------- Public APIs -------------------
+// ------------------- Authentication -------------------
 
-// Fetch blogs
+export const registerUser = async (userData) => {
+  try {
+    const response = await api.post("/register/", userData);
+    return response.data;
+  } catch (error) {
+    console.error("Error registering user:", error.response?.data || error.message);
+    throw error;
+  }
+};
+
+export const loginUser = async (userData) => {
+  try {
+    const response = await api.post("/login/", userData);
+    return response.data;
+  } catch (error) {
+    console.error("Error logging in:", error.response?.data || error.message);
+    throw error;
+  }
+};
+
+export const logoutUser = async () => {
+  try {
+    const response = await api.get("/logout/");
+    return response.data;
+  } catch (error) {
+    console.error("Error logging out:", error.response?.data || error.message);
+    throw error;
+  }
+};
+
+// ------------------- Blogs -------------------
+
 export const getBlogs = async () => {
   try {
-    const response = await api.get("/api/blogs/");
+    const response = await api.get("/blogs/");
     return response.data;
   } catch (error) {
     console.error("Error fetching blogs:", error.response?.data || error.message);
@@ -23,10 +54,11 @@ export const getBlogs = async () => {
   }
 };
 
-// Fetch donations
+// ------------------- Donations -------------------
+
 export const getDonations = async () => {
   try {
-    const response = await api.get("/api/donations/");
+    const response = await api.get("/donations/");
     return response.data;
   } catch (error) {
     console.error("Error fetching donations:", error.response?.data || error.message);
@@ -34,10 +66,11 @@ export const getDonations = async () => {
   }
 };
 
-// Submit contact form
+// ------------------- Contact -------------------
+
 export const submitContactForm = async (data) => {
   try {
-    const response = await api.post("/api/contact/", data);
+    const response = await api.post("/contact/", data);
     return response.data;
   } catch (error) {
     console.error("Error submitting contact form:", error.response?.data || error.message);
@@ -49,7 +82,7 @@ export const submitContactForm = async (data) => {
 
 export const volunteerSignup = async (data) => {
   try {
-    const response = await api.post("/api/volunteers/", data);
+    const response = await api.post("/volunteers/", data);
     return response.data;
   } catch (error) {
     console.error("Error signing up volunteer:", error.response?.data || error.message);
@@ -61,7 +94,7 @@ export const volunteerSignup = async (data) => {
 
 export const partnerInquiry = async (data) => {
   try {
-    const response = await api.post("/api/partner-inquiries/", data);
+    const response = await api.post("/partner-inquiries/", data);
     return response.data;
   } catch (error) {
     console.error("Error submitting partner inquiry:", error.response?.data || error.message);
@@ -73,7 +106,7 @@ export const partnerInquiry = async (data) => {
 
 export const createFundraiseCampaign = async (data) => {
   try {
-    const response = await api.post("/api/campaigns/", data);
+    const response = await api.post("/campaigns/", data);
     return response.data;
   } catch (error) {
     console.error("Error creating campaign:", error.response?.data || error.message);
@@ -85,7 +118,7 @@ export const createFundraiseCampaign = async (data) => {
 
 export const getSubscribers = async () => {
   try {
-    const response = await api.get("/api/subscribe/");
+    const response = await api.get("/subscribe/");
     return response.data;
   } catch (error) {
     console.error("Error fetching subscribers:", error.response?.data || error.message);
@@ -95,7 +128,7 @@ export const getSubscribers = async () => {
 
 export const addSubscriber = async (data) => {
   try {
-    const response = await api.post("/api/subscribe/", data);
+    const response = await api.post("/subscribe/", data);
     return response.data;
   } catch (error) {
     console.error("Error adding subscriber:", error.response?.data || error.message);
@@ -105,7 +138,7 @@ export const addSubscriber = async (data) => {
 
 export const deleteSubscriber = async (id) => {
   try {
-    await api.delete(`/api/subscribe/${id}/`);
+    await api.delete(`/subscribe/${id}/`);
     return true;
   } catch (error) {
     console.error("Error deleting subscriber:", error.response?.data || error.message);
@@ -117,7 +150,7 @@ export const deleteSubscriber = async (id) => {
 
 export const participateInProject = async (data) => {
   try {
-    const response = await api.post("/api/participations/", data);
+    const response = await api.post("/participations/", data);
     return response.data;
   } catch (error) {
     console.error("Error submitting participation:", error.response?.data || error.message);
