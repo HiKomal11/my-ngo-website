@@ -59,7 +59,7 @@ export default function CampaignParticipationList() {
 
   return (
     <div className="container py-5">
-      <h2 className="fw-bold text-primary mb-4">👥 Campaign Participants</h2>
+      <h2 className="fw-bold text-primary mb-4"> Campaign Participants</h2>
       {participants.length === 0 ? (
         <p>No participants have joined any campaigns yet.</p>
       ) : (

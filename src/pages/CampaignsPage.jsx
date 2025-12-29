@@ -37,7 +37,7 @@ export default function CampaignsPage() {
 
   return (
     <div className="container py-5">
-      <h2 className="fw-bold text-primary mb-4">📢 Ongoing Campaigns</h2>
+      <h2 className="fw-bold text-primary mb-4"> Ongoing Campaigns</h2>
       <div className="row g-4 mt-4">
         {campaigns.length === 0 ? (
           <p>No campaigns available at the moment.</p>

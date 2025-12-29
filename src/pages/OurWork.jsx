@@ -97,7 +97,7 @@ export default function OurWork() {
 
   return (
     <div className="container py-4">
-      <h2 className="fw-bold text-primary mb-4 text-center">💼 Our Work</h2>
+      <h2 className="fw-bold text-primary mb-4 text-center"> Our Work</h2>
       {error && <p className="text-warning text-center">{error}</p>}
 
       <div className="row g-4">

@@ -37,16 +37,16 @@ export default function ContactUs() {
               {/* Contact Info */}
               <div className="small">
                 <p className="mb-2">
-                  📞 <strong>Phone:</strong> +91-XXXXXXXXXX
+                   <strong>Phone:</strong> +91-XXXXXXXXXX
                 </p>
                 <p className="mb-2">
-                  📧 <strong>Email:</strong>{" "}
+                   <strong>Email:</strong>{" "}
                   <a href="mailto:info@ngo.org" className="text-decoration-none">
                     info@ngo.org
                   </a>
                 </p>
                 <p className="mb-0">
-                  🌐 <strong>Social:</strong>{" "}
+                   <strong>Social:</strong>{" "}
                   <a
                     href="https://facebook.com"
                     target="_blank"

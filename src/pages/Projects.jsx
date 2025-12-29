@@ -50,7 +50,7 @@ export default function Projects() {
       .catch((err) => {
         console.error("Error fetching projects:", err);
         setProjects(fallbackProjects);
-        setFeedback("⚠️ Unable to load live projects. Showing fallback content.");
+       
         setLoading(false);
       });
   }, []);

@@ -20,7 +20,7 @@ export default function CommunitySubscribe() {
 
     try {
       await axios.post(`${BACKEND_URL}/api/subscribe/`, form);
-      setMessage(`✅ Subscription successful! 🎉 Welcome, ${form.name}.`);
+      setMessage(`✅ Subscription successful!  Welcome, ${form.name}.`);
       setForm({ name: "", email: "" });
     } catch (err) {
       console.error("Error:", err);
@@ -32,7 +32,7 @@ export default function CommunitySubscribe() {
 
   return (
     <div className="container py-5">
-      <h2 className="fw-bold text-primary">📬 Join the Community</h2>
+      <h2 className="fw-bold text-primary"> Join the Community</h2>
       <p className="text-muted">
         Subscribe to our newsletter and stay updated on events and campaigns.
       </p>

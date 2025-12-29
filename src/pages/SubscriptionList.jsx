@@ -48,7 +48,7 @@ export default function SubscriptionList() {
 
   return (
     <div className="container py-5">
-      <h2 className="fw-bold text-primary mb-4">📬 Newsletter Subscribers</h2>
+      <h2 className="fw-bold text-primary mb-4"> Newsletter Subscribers</h2>
 
       {feedback && <div className="alert alert-info">{feedback}</div>}
 

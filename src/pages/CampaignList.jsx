@@ -57,7 +57,7 @@ export default function CampaignList() {
 
   return (
     <div className="container py-5">
-      <h2 className="fw-bold text-primary mb-4">📢 All Campaigns</h2>
+      <h2 className="fw-bold text-primary mb-4"> All Campaigns</h2>
       <Link to="/campaigns/create" className="btn btn-success mb-3">
         + Create New Campaign
       </Link>

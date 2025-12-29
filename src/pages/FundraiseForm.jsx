@@ -42,7 +42,7 @@ export default function FundraiseForm() {
 
   return (
     <div className="container py-5">
-      <h2 className="fw-bold text-primary">💰 Start a Fundraising Campaign</h2>
+      <h2 className="fw-bold text-primary"> Start a Fundraising Campaign</h2>
       <form onSubmit={handleSubmit} className="mt-4">
         <div className="mb-3">
           <label className="form-label">Campaign Title</label>

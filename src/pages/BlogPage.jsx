@@ -36,7 +36,7 @@ export default function BlogPage() {
 
   return (
     <div className="container py-5">
-      <h2 className="fw-bold text-primary mb-4">📝 Our Blog</h2>
+      <h2 className="fw-bold text-primary mb-4"> Our Blog</h2>
       <div className="row g-4">
         {blogs.length === 0 ? (
           <p>No blog posts available.</p>

@@ -24,7 +24,7 @@ export default function CampaignJoinForm() {
         name: form.name,
         email: form.email,
       });
-      alert("✅ You successfully joined the campaign! 🎉");
+      alert("✅ You successfully joined the campaign! ");
       setForm({ name: "", email: "" });
     } catch (err) {
       console.error("Error joining campaign:", err);
