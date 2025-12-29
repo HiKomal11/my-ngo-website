@@ -1,0 +1,103 @@
+/* Helping Hands Foundation Theme Overrides */
+
+/* Brand Colors */
+:root {
+  --bs-primary: #0d6efd;   /* Primary Blue */
+  --bs-secondary: #198754; /* Secondary Green */
+  --bs-warning: #ffc107;   /* Accent Yellow */
+  --bs-dark: #212529;      /* Dark Footer/Text */
+  --bs-light: #f8f9fa;     /* Light Background */
+  --bs-muted: #6c757d;     /* Muted Gray */
+}
+
+/* Typography */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bs-light);
+  color: var(--bs-dark);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: var(--bs-dark);
+}
+
+/* Navbar */
+.navbar {
+  font-weight: 500;
+  background-color: var(--bs-light);
+  border-bottom: 1px solid #e9ecef;
+}
+.nav-link {
+  color: var(--bs-dark);
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: var(--bs-primary);
+  border-bottom: 2px solid var(--bs-primary);
+}
+
+/* Buttons */
+.btn {
+  font-weight: 500;
+  border-radius: 0.3rem;
+  transition: all 0.2s ease-in-out;
+}
+.btn-primary {
+  background-color: var(--bs-primary);
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #0b5ed7;
+}
+.btn-outline-primary {
+  border-color: var(--bs-primary);
+  color: var(--bs-primary);
+}
+.btn-outline-primary:hover {
+  background-color: var(--bs-primary);
+  color: #fff;
+}
+
+/* Cards */
+.card {
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.card-title {
+  color: var(--bs-primary);
+  font-weight: 600;
+}
+
+/* Forms */
+.form-control {
+  border-radius: 0.3rem;
+}
+.form-control:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+}
+
+/* Footer */
+footer {
+  background-color: var(--bs-dark);
+  color: var(--bs-light);
+  padding: 2rem 0;
+}
+footer a {
+  color: var(--bs-light);
+  transition: color 0.3s ease;
+}
+footer a:hover {
+  color: var(--bs-primary);
+}
+footer .social-icons a {
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+}
