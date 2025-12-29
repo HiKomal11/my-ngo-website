@@ -14,6 +14,7 @@ const api = axios.create({
 
 export const registerUser = async (userData) => {
   try {
+    // ✅ Correct endpoint
     const response = await api.post("/register/", userData);
     return response.data;
   } catch (error) {
@@ -24,6 +25,7 @@ export const registerUser = async (userData) => {
 
 export const loginUser = async (userData) => {
   try {
+    // ✅ Correct endpoint
     const response = await api.post("/login/", userData);
     return response.data;
   } catch (error) {
@@ -34,7 +36,8 @@ export const loginUser = async (userData) => {
 
 export const logoutUser = async () => {
   try {
-    const response = await api.get("/logout/");
+    // ✅ Backend expects POST for logout
+    const response = await api.post("/logout/");
     return response.data;
   } catch (error) {
     console.error("Error logging out:", error.response?.data || error.message);
@@ -46,7 +49,7 @@ export const logoutUser = async () => {
 
 export const getBlogs = async () => {
   try {
-    const response = await api.get("/blogs/");
+    const response = await api.get("/blog/");
     return response.data;
   } catch (error) {
     console.error("Error fetching blogs:", error.response?.data || error.message);
@@ -150,7 +153,7 @@ export const deleteSubscriber = async (id) => {
 
 export const participateInProject = async (data) => {
   try {
-    const response = await api.post("/participations/", data);
+    const response = await api.post("/campaign-participation/", data);
     return response.data;
   } catch (error) {
     console.error("Error submitting participation:", error.response?.data || error.message);

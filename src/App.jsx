@@ -2,7 +2,7 @@ import React from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import ProtectedRoute from "./components/ProtectedRoute"; // new wrapper
+import ProtectedRoute from "./components/ProtectedRoute"; // wrapper
 
 // Public Pages (only accessible after login)
 import HomePage from "./pages/Home";
@@ -51,72 +51,248 @@ export default function App() {
       <Routes>
         {/* Authentication Routes */}
         <Route path="/" element={<LoginPage />} /> {/* Default entry point */}
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
-        {/* Protected Routes (only visible after login) */}
+        {/* Protected Routes */}
         <Route
-          path="/*"
+          path="/home"
           element={
             <ProtectedRoute>
-              <div className="d-flex flex-column min-vh-100">
-                {/* NGO Branding */}
-                <header className="text-center py-3 bg-primary text-light">
-                  <h1 className="m-0">Helping Hands Foundation</h1>
-                </header>
-
-                {/* Navigation Bar */}
-                <NavBar />
-
-                {/* Page Content */}
-                <main className="flex-grow-1">
-                  <Routes>
-                    {/* Public Pages */}
-                    <Route path="/home" element={<HomePage />} />
-                    <Route path="/about" element={<AboutUs />} />
-                    <Route path="/work" element={<OurWork />} />
-                    <Route path="/projects" element={<Projects />} />
-                    <Route path="/media" element={<Media />} />
-                    <Route path="/get-involved" element={<GetInvolved />} />
-                    <Route path="/blog" element={<BlogPage />} />
-                    <Route path="/blog/:id" element={<BlogDetail />} />
-                    <Route path="/contact" element={<ContactUs />} />
-                    <Route path="/donate" element={<DonatePage />} />
-
-                    {/* User Dashboard */}
-                    <Route path="/user-dashboard" element={<DashboardPage />} />
-
-                    {/* Admin Dashboard */}
-                    <Route path="/admin-dashboard" element={<Dashboard />} />
-
-                    {/* Admin / Forms */}
-                    <Route path="/volunteer" element={<VolunteerPage />} />
-                    <Route path="/volunteer/form" element={<VolunteerForm />} />
-                    <Route path="/partner" element={<PartnerForm />} />
-                    <Route path="/fundraise" element={<FundraiseForm />} />
-                    <Route path="/campaigns" element={<CampaignsPage />} />
-                    <Route path="/campaigns/create" element={<CampaignCreateForm />} />
-                    <Route path="/campaigns/list" element={<CampaignList />} />
-                    <Route path="/campaigns/:id" element={<CampaignDetail />} />
-                    <Route path="/campaigns/:id/join" element={<CampaignJoinForm />} />
-                    <Route path="/campaign-participants" element={<CampaignParticipationList />} />
-                    <Route path="/subscribe" element={<CommunitySubscribe />} />
-                    <Route path="/subscribers" element={<SubscriptionList />} />
-                    <Route path="/donations" element={<DonationsList />} />
-                    <Route path="/media/upload" element={<MediaUploadForm />} />
-                    <Route path="/media/list" element={<MediaList />} />
-
-                    {/* Fallback */}
-                    <Route path="*" element={<HomePage />} />
-                  </Routes>
-                </main>
-
-                {/* Footer */}
-                <Footer />
-              </div>
+              <Layout><HomePage /></Layout>
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/about"
+          element={
+            <ProtectedRoute>
+              <Layout><AboutUs /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/work"
+          element={
+            <ProtectedRoute>
+              <Layout><OurWork /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/projects"
+          element={
+            <ProtectedRoute>
+              <Layout><Projects /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/media"
+          element={
+            <ProtectedRoute>
+              <Layout><Media /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/get-involved"
+          element={
+            <ProtectedRoute>
+              <Layout><GetInvolved /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/blog"
+          element={
+            <ProtectedRoute>
+              <Layout><BlogPage /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/blog/:id"
+          element={
+            <ProtectedRoute>
+              <Layout><BlogDetail /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <ProtectedRoute>
+              <Layout><ContactUs /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/donate"
+          element={
+            <ProtectedRoute>
+              <Layout><DonatePage /></Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Dashboards */}
+        <Route
+          path="/user-dashboard"
+          element={
+            <ProtectedRoute>
+              <Layout><DashboardPage /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin-dashboard"
+          element={
+            <ProtectedRoute>
+              <Layout><Dashboard /></Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Admin / Forms */}
+        <Route
+          path="/volunteer"
+          element={
+            <ProtectedRoute>
+              <Layout><VolunteerPage /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/volunteer/form"
+          element={
+            <ProtectedRoute>
+              <Layout><VolunteerForm /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/partner"
+          element={
+            <ProtectedRoute>
+              <Layout><PartnerForm /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/fundraise"
+          element={
+            <ProtectedRoute>
+              <Layout><FundraiseForm /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/campaigns"
+          element={
+            <ProtectedRoute>
+              <Layout><CampaignsPage /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/campaigns/create"
+          element={
+            <ProtectedRoute>
+              <Layout><CampaignCreateForm /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/campaigns/list"
+          element={
+            <ProtectedRoute>
+              <Layout><CampaignList /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/campaigns/:id"
+          element={
+            <ProtectedRoute>
+              <Layout><CampaignDetail /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/campaigns/:id/join"
+          element={
+            <ProtectedRoute>
+              <Layout><CampaignJoinForm /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/campaign-participants"
+          element={
+            <ProtectedRoute>
+              <Layout><CampaignParticipationList /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/subscribe"
+          element={
+            <ProtectedRoute>
+              <Layout><CommunitySubscribe /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/subscribers"
+          element={
+            <ProtectedRoute>
+              <Layout><SubscriptionList /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/donations"
+          element={
+            <ProtectedRoute>
+              <Layout><DonationsList /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/media/upload"
+          element={
+            <ProtectedRoute>
+              <Layout><MediaUploadForm /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/media/list"
+          element={
+            <ProtectedRoute>
+              <Layout><MediaList /></Layout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Fallback */}
+        <Route path="*" element={<LoginPage />} />
       </Routes>
     </Router>
+  );
+}
+
+/* Layout wrapper to avoid repeating header/nav/footer */
+function Layout({ children }) {
+  return (
+    <div className="d-flex flex-column min-vh-100">
+      <header className="text-center py-3 bg-primary text-light">
+        <h1 className="m-0">Helping Hands Foundation</h1>
+      </header>
+      <NavBar />
+      <main className="flex-grow-1">{children}</main>
+      <Footer />
+    </div>
   );
 }
