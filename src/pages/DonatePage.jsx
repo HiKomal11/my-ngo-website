@@ -116,7 +116,9 @@ export default function DonatePage() {
 
   return (
     <div className="container py-5">
-      <h2 className="fw-bold text-primary mb-4 text-center"> Donate</h2>
+      {/* ✅ Updated heading */}
+      <h2 className="fw-bold text-primary mb-4 text-center">Donate</h2>
+
       <div className="card shadow-sm">
         <div className="card-body">
           <form className="row g-3">
@@ -187,7 +189,7 @@ export default function DonatePage() {
       )}
 
       <div className="alert alert-light border mt-3 text-center">
-         Secure payments powered by Stripe, Razorpay, and PayPal.  
+        Secure payments powered by Stripe, Razorpay, and PayPal.  
         After donation, you’ll receive an acknowledgment and can share your support.
       </div>
     </div>

@@ -8,7 +8,6 @@ export default function OurWork() {
   const [workAreas, setWorkAreas] = useState([]);
   const [selectedWork, setSelectedWork] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     axios
@@ -55,7 +54,7 @@ export default function OurWork() {
       })
       .catch((err) => {
         console.error("Error fetching work areas:", err);
-        setError("⚠️ Unable to load live work areas. Showing fallback content.");
+        // ✅ No error message, just fallback content
         setWorkAreas([
           {
             title: "Education Programs",
@@ -97,8 +96,7 @@ export default function OurWork() {
 
   return (
     <div className="container py-4">
-      <h2 className="fw-bold text-primary mb-4 text-center"> Our Work</h2>
-      {error && <p className="text-warning text-center">{error}</p>}
+      <h2 className="fw-bold text-primary mb-4 text-center">Our Work</h2>
 
       <div className="row g-4">
         {workAreas.map((area, idx) => (

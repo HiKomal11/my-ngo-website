@@ -8,7 +8,6 @@ const BACKEND_URL =
 export default function Media() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   // Preloaded fallback content
   const fallbackItems = [
@@ -87,7 +86,6 @@ export default function Media() {
       .catch((err) => {
         console.error("Error fetching media:", err);
         setItems(fallbackItems); // fallback only if API fails
-        setError("⚠️ Unable to load live media. Showing fallback content.");
         setLoading(false);
       });
   }, []);
@@ -103,24 +101,23 @@ export default function Media() {
 
   return (
     <div className="container py-4">
-      <h2 className="fw-bold text-primary mb-4 text-center"> Media Showcase</h2>
-      {error && <p className="text-warning text-center">{error}</p>}
+      <h2 className="fw-bold text-primary mb-4 text-center">Media Showcase</h2>
 
       {/* Photos */}
       <section className="mb-5">
-        <h3 className="h5 text-primary"> Photos</h3>
+        <h3 className="h5 text-primary">Photos</h3>
         <Gallery items={items.filter((i) => i.type === "image")} />
       </section>
 
       {/* Videos */}
       <section className="mb-5">
-        <h3 className="h5 text-danger"> Videos</h3>
+        <h3 className="h5 text-danger">Videos</h3>
         <Gallery items={items.filter((i) => i.type === "video")} />
       </section>
 
       {/* Press Releases */}
       <section className="mb-5">
-        <h3 className="h5 text-success"> Press Releases</h3>
+        <h3 className="h5 text-success">Press Releases</h3>
         <ul className="list-group">
           {items.filter((i) => i.type === "press").map((press, idx) => (
             <li
@@ -143,7 +140,7 @@ export default function Media() {
 
       {/* Electronic Media */}
       <section>
-        <h3 className="h5 text-warning"> Electronic Media</h3>
+        <h3 className="h5 text-warning">Electronic Media</h3>
         <ul className="list-group">
           {items.filter((i) => i.type === "blog").map((blog, idx) => (
             <li
