@@ -36,7 +36,7 @@ import MediaUploadForm from "./components/MediaUploadForm";
 import MediaList from "./components/MediaList";
 
 import "./i18n";
-import "./custom.css";
+import "./styles/theme-overrides.css";
 import "./App.css";
 
 export default function App() {
