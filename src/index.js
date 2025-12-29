@@ -16,8 +16,8 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 // ✅ Theme overrides (must come after Bootstrap)
 import "./styles/theme-overrides.css";
 
-// ✅ Routes (main app entry)
-import AppRoutes from "./routes/AppRoutes";
+// ✅ Main App entry (unified router)
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppRoutes />);
+root.render(<App />);
