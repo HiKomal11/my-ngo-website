@@ -19,9 +19,9 @@ export default function DonatePage() {
       const res = await axios.post(
         `${BACKEND_URL}/api/payments/razorpay/create-order/`,
         {
-          donor_name: donorName,
-          donor_email: donorEmail,
-          amount,
+          name: donorName,
+          email: donorEmail,
+          amount: parseInt(amount, 10),
         }
       );
 
@@ -66,9 +66,9 @@ export default function DonatePage() {
     setMessage("");
     try {
       const res = await axios.post(`${BACKEND_URL}/api/payments/stripe/create-order/`, {
-        donor_name: donorName,
-        donor_email: donorEmail,
-        amount,
+        name: donorName,
+        email: donorEmail,
+        amount: parseInt(amount, 10),
       });
 
       const { sessionId } = res.data;
@@ -94,9 +94,9 @@ export default function DonatePage() {
     setMessage("");
     try {
       const res = await axios.post(`${BACKEND_URL}/api/payments/paypal/create-order/`, {
-        donor_name: donorName,
-        donor_email: donorEmail,
-        amount,
+        name: donorName,
+        email: donorEmail,
+        amount: parseInt(amount, 10),
       });
 
       const { order } = res.data;
@@ -116,7 +116,6 @@ export default function DonatePage() {
 
   return (
     <div className="container py-5">
-      {/* ✅ Updated heading */}
       <h2 className="fw-bold text-primary mb-4 text-center">Donate</h2>
 
       <div className="card shadow-sm">
