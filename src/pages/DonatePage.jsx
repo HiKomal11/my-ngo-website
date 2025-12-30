@@ -65,7 +65,7 @@ export default function DonatePage() {
     setLoading(true);
     setMessage("");
     try {
-      const res = await axios.post(`${BACKEND_URL}/api/payments/stripe/create-order/`, {
+      const res = await axios.post(`${BACKEND_URL}/payments/stripe/create-order/`, {
         name: donorName,
         email: donorEmail,
         amount: parseInt(amount, 10),
