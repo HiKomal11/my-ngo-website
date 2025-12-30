@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { registerUser } from "../services/api";
+import { registerUser } from "../services/api"; // axios wrapper
 import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
@@ -18,7 +18,7 @@ function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // ✅ Axios returns { data: {...} }
+      // ✅ Call your backend via axios service
       const res = await registerUser(formData);
       const data = res.data;
 
@@ -38,6 +38,7 @@ function RegisterPage() {
       <h2 className="fw-bold text-primary">Register</h2>
       <form
         onSubmit={handleSubmit}
+        method="post"
         className="mt-3 mx-auto"
         style={{ maxWidth: "400px" }}
       >

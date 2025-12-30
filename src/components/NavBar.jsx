@@ -92,18 +92,6 @@ export default function NavBar() {
             {isLoggedIn && (
               <>
                 <li className="nav-item">
-                  <NavLink to="/user-dashboard" className="nav-link">
-                    User Dashboard
-                  </NavLink>
-                </li>
-                {isAdmin && (
-                  <li className="nav-item">
-                    <NavLink to="/admin-dashboard" className="nav-link">
-                      Admin Dashboard
-                    </NavLink>
-                  </li>
-                )}
-                <li className="nav-item">
                   <button
                     className="btn btn-outline-danger btn-sm ms-3"
                     onClick={handleLogout}

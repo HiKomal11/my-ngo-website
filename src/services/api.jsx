@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// Centralized API instance
 const api = axios.create({
   baseURL:
     process.env.REACT_APP_API_BASE ||
@@ -7,40 +8,40 @@ const api = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-// ✅ Authentication
+// ==================== AUTHENTICATION ====================
 export const registerUser = (data) => api.post("/register/", data);
 export const loginUser = (data) => api.post("/login/", data);
 export const logoutUser = () => api.post("/logout/");
 export const authStatus = () => api.get("/auth/status/");
 
-// ✅ Blogs
+// ==================== BLOGS ====================
 export const getBlogs = () => api.get("/blog/");
 export const getBlogDetail = (id) => api.get(`/blog/${id}/`);
 
-// ✅ Donations
+// ==================== DONATIONS ====================
 export const getDonations = () => api.get("/donations/");
 
-// ✅ Contact
+// ==================== CONTACT ====================
 export const submitContactForm = (data) => api.post("/contact/", data);
 
-// ✅ Volunteers
+// ==================== VOLUNTEERS ====================
 export const volunteerSignup = (data) => api.post("/volunteers/", data);
 
-// ✅ Partner Inquiries
+// ==================== PARTNER INQUIRIES ====================
 export const partnerInquiry = (data) => api.post("/partner-inquiries/", data);
 
-// ✅ Fundraise Campaigns
+// ==================== FUNDRAISE CAMPAIGNS ====================
 export const createFundraiseCampaign = (data) => api.post("/campaigns/", data);
 
-// ✅ Subscriptions
+// ==================== SUBSCRIPTIONS ====================
 export const getSubscribers = () => api.get("/subscribe/");
 export const addSubscriber = (data) => api.post("/subscribe/", data);
 export const deleteSubscriber = (id) => api.delete(`/subscribe/${id}/`);
 
-// ✅ Campaign Participation
+// ==================== CAMPAIGN PARTICIPATION ====================
 export const participateInProject = (data) =>
   api.post("/campaign-participation/", data);
 
-// ✅ Media (optional if you need uploads)
+// ==================== MEDIA ====================
 export const getMedia = () => api.get("/media/");
 export const uploadMedia = (data) => api.post("/media/", data);

@@ -54,15 +54,13 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
-        {/* Protected Routes */}
-        <Route
-          path="/home"
+        <Route 
+          path="/home" 
           element={
-            <ProtectedRoute>
-              <Layout><HomePage /></Layout>
-            </ProtectedRoute>
+            <HomePage />
           }
-        />
+        />  // ✅ should be public
+
         <Route
           path="/about"
           element={

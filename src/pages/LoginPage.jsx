@@ -3,7 +3,7 @@ import { loginUser } from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
-  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
@@ -14,17 +14,14 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // ✅ Axios returns { data: {...} }
       const res = await loginUser(formData);
       const data = res.data;
 
       if (data.message === "Login successful") {
-        // Save login state
         localStorage.setItem("token", "dummy-session-token");
         localStorage.setItem("isAdmin", data.isAdmin || false);
         localStorage.setItem("role", data.role || "user");
 
-        // Redirect based on role
         if (data.isAdmin) {
           navigate("/admin-dashboard");
         } else {
@@ -48,10 +45,11 @@ function LoginPage() {
       >
         <div className="mb-3">
           <input
-            name="username"
-            placeholder="Username"
+            name="email"
+            type="email"
+            placeholder="Email"
             className="form-control"
-            value={formData.username}
+            value={formData.email}
             onChange={handleChange}
             required
           />
@@ -72,7 +70,6 @@ function LoginPage() {
         </button>
       </form>
 
-      {/* Register Button */}
       <div className="mt-4">
         <p>New user? Register below:</p>
         <button
