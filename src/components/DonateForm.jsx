@@ -14,7 +14,7 @@ function DonateForm() {
 
     try {
       // ✅ Call backend via centralized API
-      const res = await api.post("/api/donations/razorpay/create-order/", {
+      const res = await api.post("/donations/razorpay/create-order/", {
         donor_name: donorName,
         donor_email: donorEmail,
         amount: amount,

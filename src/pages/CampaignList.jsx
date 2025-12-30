@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const BACKEND_URL =
-  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function CampaignList() {
   const [campaigns, setCampaigns] = useState([]);
@@ -13,7 +13,7 @@ export default function CampaignList() {
   const fetchCampaigns = () => {
     setLoading(true);
     axios
-      .get(`${BACKEND_URL}/api/campaigns/`)
+      .get(`${BACKEND_URL}/campaigns/`)
       .then((res) => {
         setCampaigns(res.data);
         setLoading(false);
@@ -32,7 +32,7 @@ export default function CampaignList() {
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this campaign?")) {
       axios
-        .delete(`${BACKEND_URL}/api/campaigns/${id}/`)
+        .delete(`${BACKEND_URL}/campaigns/${id}/`)
         .then(() => {
           alert("✅ Campaign deleted successfully!");
           fetchCampaigns();

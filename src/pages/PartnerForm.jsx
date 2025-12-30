@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const BACKEND_URL =
-  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function PartnerForm() {
   const [form, setForm] = useState({
@@ -25,7 +25,7 @@ export default function PartnerForm() {
     setFeedback("");
 
     try {
-      await axios.post(`${BACKEND_URL}/api/partner-inquiries/`, form);
+      await axios.post(`${BACKEND_URL}/partner-inquiries/`, form);
       setFeedback("✅ Partnership request submitted successfully!");
       setForm({
         company_name: "",

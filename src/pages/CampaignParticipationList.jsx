@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const BACKEND_URL =
-  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function CampaignParticipationList() {
   const [participants, setParticipants] = useState([]);
@@ -14,7 +14,7 @@ export default function CampaignParticipationList() {
   const fetchParticipants = () => {
     setLoading(true);
     axios
-      .get(`${BACKEND_URL}/api/campaign-participation/`)
+      .get(`${BACKEND_URL}/campaign-participation/`)
       .then((res) => {
         setParticipants(res.data);
         setLoading(false);
@@ -34,7 +34,7 @@ export default function CampaignParticipationList() {
   const handleDelete = (id) => {
     if (window.confirm("Remove this participant from campaign?")) {
       axios
-        .delete(`${BACKEND_URL}/api/campaign-participation/${id}/`)
+        .delete(`${BACKEND_URL}/campaign-participation/${id}/`)
         .then(() => {
           alert("✅ Participant removed successfully!");
           fetchParticipants(); // refresh list

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const BACKEND_URL =
-  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function DonatePage() {
   const [donorName, setDonorName] = useState("");
@@ -17,7 +17,7 @@ export default function DonatePage() {
     setMessage("");
     try {
       const res = await axios.post(
-        `${BACKEND_URL}/api/payments/razorpay/create-order/`,
+        `${BACKEND_URL}/payments/razorpay/create-order/`,
         {
           name: donorName,
           email: donorEmail,
@@ -93,7 +93,7 @@ export default function DonatePage() {
     setLoading(true);
     setMessage("");
     try {
-      const res = await axios.post(`${BACKEND_URL}/api/payments/paypal/create-order/`, {
+      const res = await axios.post(`${BACKEND_URL}/payments/paypal/create-order/`, {
         name: donorName,
         email: donorEmail,
         amount: parseInt(amount, 10),

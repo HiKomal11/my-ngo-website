@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const BACKEND_URL =
-  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function CampaignJoinForm() {
   const { id } = useParams(); // campaign ID from route
@@ -19,7 +19,7 @@ export default function CampaignJoinForm() {
     setLoading(true);
 
     try {
-      await axios.post(`${BACKEND_URL}/api/campaign-participation/`, {
+      await axios.post(`${BACKEND_URL}/campaign-participation/`, {
         campaign: id,
         name: form.name,
         email: form.email,

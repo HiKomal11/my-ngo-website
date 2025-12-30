@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const BACKEND_URL =
-  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function SubscriptionList() {
   const [subscribers, setSubscribers] = useState([]);
@@ -14,7 +14,7 @@ export default function SubscriptionList() {
     setLoading(true);
     setFeedback("");
     axios
-      .get(`${BACKEND_URL}/api/subscribe/`)
+      .get(`${BACKEND_URL}/subscribe/`)
       .then((res) => {
         setSubscribers(res.data);
         setLoading(false);
@@ -34,7 +34,7 @@ export default function SubscriptionList() {
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to unsubscribe this user?")) {
       axios
-        .delete(`${BACKEND_URL}/api/subscribe/${id}/`)
+        .delete(`${BACKEND_URL}/subscribe/${id}/`)
         .then(() => {
           setFeedback("✅ Subscriber removed successfully!");
           fetchSubscribers(); // refresh list

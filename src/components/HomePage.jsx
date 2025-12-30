@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function HomePage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -10,7 +10,7 @@ export default function HomePage() {
 
   useEffect(() => {
     // Call backend to check if user is logged in
-    fetch(`${BACKEND_URL}/api/auth/status/`, {
+    fetch(`${BACKEND_URL}/auth/status/`, {
       credentials: "include", // important for Django session cookies
     })
       .then((res) => res.json())

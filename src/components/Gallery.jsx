@@ -1,7 +1,7 @@
 import React from "react";
 
 // ✅ Use environment variable or fallback to your live backend
-const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function Gallery({ items = [] }) {
   return (

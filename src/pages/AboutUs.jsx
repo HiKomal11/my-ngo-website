@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function AboutUs() {
   const [about, setAbout] = useState(null);
@@ -41,8 +41,8 @@ export default function AboutUs() {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`${BACKEND_URL}/api/about/`).catch(() => ({ data: fallbackAbout })),
-      axios.get(`${BACKEND_URL}/api/team/`).catch(() => ({ data: fallbackTeam })),
+      axios.get(`${BACKEND_URL}/about/`).catch(() => ({ data: fallbackAbout })),
+      axios.get(`${BACKEND_URL}/team/`).catch(() => ({ data: fallbackTeam })),
     ])
       .then(([aboutRes, teamRes]) => {
         setAbout(aboutRes.data);

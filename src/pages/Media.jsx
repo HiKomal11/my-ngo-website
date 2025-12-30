@@ -3,7 +3,7 @@ import axios from "axios";
 import Gallery from "../components/Gallery";
 
 const BACKEND_URL =
-  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function Media() {
   const [items, setItems] = useState([]);
@@ -69,7 +69,7 @@ export default function Media() {
 
   useEffect(() => {
     axios
-      .get(`${BACKEND_URL}/api/media/`)
+      .get(`${BACKEND_URL}/media/`)
       .then((res) => {
         const formatted = res.data.map((item) => ({
           type: item.type === "photo" ? "image" : item.type,

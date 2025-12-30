@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const BACKEND_URL =
-  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function CampaignDetail() {
   const { id } = useParams(); // campaign ID from route
@@ -16,12 +16,12 @@ export default function CampaignDetail() {
     const fetchData = async () => {
       try {
         // Fetch campaign details
-        const campaignRes = await axios.get(`${BACKEND_URL}/api/campaigns/${id}/`);
+        const campaignRes = await axios.get(`${BACKEND_URL}/campaigns/${id}/`);
         setCampaign(campaignRes.data);
 
         // Fetch participants for this campaign
         const participantsRes = await axios.get(
-          `${BACKEND_URL}/api/campaign-participation/`
+          `${BACKEND_URL}/campaign-participation/`
         );
         const filtered = participantsRes.data.filter(
           (p) => p.campaign.id === parseInt(id)

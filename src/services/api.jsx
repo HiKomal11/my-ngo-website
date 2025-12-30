@@ -3,44 +3,44 @@ import axios from "axios";
 const api = axios.create({
   baseURL:
     process.env.REACT_APP_API_BASE ||
-    "https://ngo-cms-backend-5oez.onrender.com",
+    "https://ngo-cms-backend-5oez.onrender.com/api",
   headers: { "Content-Type": "application/json" },
 });
 
 // ✅ Authentication
-export const registerUser = (data) => api.post("/api/register/", data);
-export const loginUser = (data) => api.post("/api/login/", data);
-export const logoutUser = () => api.post("/api/logout/");
-export const authStatus = () => api.get("/api/auth/status/");
+export const registerUser = (data) => api.post("/register/", data);
+export const loginUser = (data) => api.post("/login/", data);
+export const logoutUser = () => api.post("/logout/");
+export const authStatus = () => api.get("/auth/status/");
 
 // ✅ Blogs
-export const getBlogs = () => api.get("/api/blog/");
-export const getBlogDetail = (id) => api.get(`/api/blog/${id}/`);
+export const getBlogs = () => api.get("/blog/");
+export const getBlogDetail = (id) => api.get(`/blog/${id}/`);
 
 // ✅ Donations
-export const getDonations = () => api.get("/api/donations/");
+export const getDonations = () => api.get("/donations/");
 
 // ✅ Contact
-export const submitContactForm = (data) => api.post("/api/contact/", data);
+export const submitContactForm = (data) => api.post("//contact/", data);
 
 // ✅ Volunteers
-export const volunteerSignup = (data) => api.post("/api/volunteers/", data);
+export const volunteerSignup = (data) => api.post("/volunteers/", data);
 
 // ✅ Partner Inquiries
-export const partnerInquiry = (data) => api.post("/api/partner-inquiries/", data);
+export const partnerInquiry = (data) => api.post("/partner-inquiries/", data);
 
 // ✅ Fundraise Campaigns
-export const createFundraiseCampaign = (data) => api.post("/api/campaigns/", data);
+export const createFundraiseCampaign = (data) => api.post("/campaigns/", data);
 
 // ✅ Subscriptions
-export const getSubscribers = () => api.get("/api/subscribe/");
-export const addSubscriber = (data) => api.post("/api/subscribe/", data);
-export const deleteSubscriber = (id) => api.delete(`/api/subscribe/${id}/`);
+export const getSubscribers = () => api.get("/subscribe/");
+export const addSubscriber = (data) => api.post("/subscribe/", data);
+export const deleteSubscriber = (id) => api.delete(`/subscribe/${id}/`);
 
 // ✅ Campaign Participation
 export const participateInProject = (data) =>
-  api.post("/api/campaign-participation/", data);
+  api.post("/campaign-participation/", data);
 
 // ✅ Media (optional if you need uploads)
-export const getMedia = () => api.get("/api/media/");
-export const uploadMedia = (data) => api.post("/api/media/", data);
+export const getMedia = () => api.get("/media/");
+export const uploadMedia = (data) => api.post("/media/", data);

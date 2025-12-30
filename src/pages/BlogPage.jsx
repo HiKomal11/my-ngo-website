@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function BlogPage() {
   const [blogs, setBlogs] = useState([]);
@@ -11,7 +11,7 @@ export default function BlogPage() {
 
   useEffect(() => {
     axios
-      .get(`${BACKEND_URL}/api/blog/`)
+      .get(`${BACKEND_URL}/blog/`)
       .then((res) => {
         setBlogs(res.data);
         setLoading(false);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const BACKEND_URL =
-  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function CommunitySubscribe() {
   const [form, setForm] = useState({ name: "", email: "" });
@@ -19,7 +19,7 @@ export default function CommunitySubscribe() {
     setMessage("");
 
     try {
-      await axios.post(`${BACKEND_URL}/api/subscribe/`, form);
+      await axios.post(`${BACKEND_URL}/subscribe/`, form);
       setMessage(`✅ Subscription successful!  Welcome, ${form.name}.`);
       setForm({ name: "", email: "" });
     } catch (err) {

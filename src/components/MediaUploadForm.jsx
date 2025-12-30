@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function MediaUploadForm() {
   const [form, setForm] = useState({
@@ -34,7 +34,7 @@ export default function MediaUploadForm() {
     if (form.image) data.append("image", form.image);
 
     try {
-      await axios.post(`${BACKEND_URL}/api/media/`, data, {
+      await axios.post(`${BACKEND_URL}/media/`, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("✅ Media uploaded successfully ");

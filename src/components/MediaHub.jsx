@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function MediaHub() {
   const [mediaItems, setMediaItems] = useState([]);
@@ -9,7 +9,7 @@ export default function MediaHub() {
 
   useEffect(() => {
     axios
-      .get(`${BACKEND_URL}/api/media/`)
+      .get(`${BACKEND_URL}/media/`)
       .then((res) => setMediaItems(res.data))
       .catch((err) => {
         console.error("Error fetching media:", err);
@@ -19,7 +19,7 @@ export default function MediaHub() {
 
   return (
     <div className="container mt-4">
-      <h2 className="mb-4 text-center">🎥 Media Hub</h2>
+      <h2 className="mb-4 text-center"> Media Hub</h2>
       {error && <div className="alert alert-danger">{error}</div>}
       <div className="row g-3">
         {mediaItems.length === 0 && !error ? (

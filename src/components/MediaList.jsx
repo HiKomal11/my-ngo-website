@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function MediaList() {
   const [mediaItems, setMediaItems] = useState([]);
@@ -10,7 +10,7 @@ export default function MediaList() {
 
   const fetchMedia = () => {
     axios
-      .get(`${BACKEND_URL}/api/media/`)
+      .get(`${BACKEND_URL}/media/`)
       .then((res) => setMediaItems(res.data))
       .catch((err) => {
         console.error("Error fetching media:", err);
@@ -25,7 +25,7 @@ export default function MediaList() {
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this media item?")) {
       axios
-        .delete(`${BACKEND_URL}/api/media/${id}/`)
+        .delete(`${BACKEND_URL}/media/${id}/`)
         .then(() => {
           alert("✅ Media item deleted successfully!");
           fetchMedia();

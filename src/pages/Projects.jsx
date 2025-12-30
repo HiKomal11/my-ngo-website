@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const BACKEND_URL =
-  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
@@ -35,7 +35,7 @@ export default function Projects() {
 
   useEffect(() => {
     axios
-      .get(`${BACKEND_URL}/api/projects/`)
+      .get(`${BACKEND_URL}/projects/`)
       .then((res) => {
         const formatted = res.data.map((p) => ({
           title: p.title,
@@ -60,7 +60,7 @@ export default function Projects() {
     e.preventDefault();
     setFeedback("");
     try {
-      await axios.post(`${BACKEND_URL}/api/participations/`, formData);
+      await axios.post(`${BACKEND_URL}/participations/`, formData);
       setFeedback(
         `✅ Thank you, ${formData.name}! Your interest in ${formData.project} has been recorded.`
       );

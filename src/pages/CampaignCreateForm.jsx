@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+const BACKEND_URL = process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function CampaignCreateForm() {
   const [form, setForm] = useState({
@@ -19,7 +19,7 @@ export default function CampaignCreateForm() {
     setLoading(true);
 
     try {
-      await axios.post(`${BACKEND_URL}/api/campaigns/`, form);
+      await axios.post(`${BACKEND_URL}/campaigns/`, form);
       alert("✅ Campaign created successfully! 🎉");
       setForm({ title: "", description: "" });
     } catch (err) {

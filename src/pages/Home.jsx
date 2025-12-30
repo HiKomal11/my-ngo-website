@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const BACKEND_URL =
-  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function Home() {
   const [campaigns, setCampaigns] = useState([]);
@@ -39,7 +39,7 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get(`${BACKEND_URL}/api/campaigns/`)
+      .get(`${BACKEND_URL}/campaigns/`)
       .then((res) => {
         setCampaigns(res.data);
         setLoading(false);

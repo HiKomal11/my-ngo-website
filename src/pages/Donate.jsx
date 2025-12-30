@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const BACKEND_URL =
-  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function Donate() {
   const [donorName, setDonorName] = useState("");
@@ -19,7 +19,7 @@ export default function Donate() {
     setMessage("");
     try {
       const res = await axios.post(
-        `${BACKEND_URL}/api/payments/razorpay/create-order/`,
+        `${BACKEND_URL}/payments/razorpay/create-order/`,
         {
           donor_name: donorName,
           donor_email: donorEmail,
@@ -70,7 +70,7 @@ export default function Donate() {
     setMessage("");
     try {
       const res = await axios.post(
-        `${BACKEND_URL}/api/payments/stripe/create-order/`,
+        `${BACKEND_URL}/payments/stripe/create-order/`,
         {
           donor_name: donorName,
           donor_email: donorEmail,
@@ -103,7 +103,7 @@ export default function Donate() {
     setMessage("");
     try {
       const res = await axios.post(
-        `${BACKEND_URL}/api/payments/paypal/create-order/`,
+        `${BACKEND_URL}/payments/paypal/create-order/`,
         {
           donor_name: donorName,
           donor_email: donorEmail,
@@ -130,7 +130,7 @@ export default function Donate() {
 
   return (
     <div className="container py-4">
-      <h2 className="mb-4 text-center fw-bold text-primary">💝 Donate</h2>
+      <h2 className="mb-4 text-center fw-bold text-primary"> Donate</h2>
       <div className="card shadow-sm">
         <div className="card-body">
           <div className="row g-3">

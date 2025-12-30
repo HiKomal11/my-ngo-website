@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const BACKEND_URL =
-  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function FundraiseForm() {
   const [form, setForm] = useState({
@@ -24,7 +24,7 @@ export default function FundraiseForm() {
     setMessage("");
 
     try {
-      await axios.post(`${BACKEND_URL}/api/campaigns/`, form);
+      await axios.post(`${BACKEND_URL}/campaigns/`, form);
       setMessage("✅ Fundraising campaign created successfully!");
       setForm({
         title: "",

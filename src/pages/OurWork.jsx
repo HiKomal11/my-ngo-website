@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const BACKEND_URL =
-  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com";
+  process.env.REACT_APP_API_BASE || "https://ngo-cms-backend-5oez.onrender.com/api";
 
 export default function OurWork() {
   const [workAreas, setWorkAreas] = useState([]);
@@ -11,7 +11,7 @@ export default function OurWork() {
 
   useEffect(() => {
     axios
-      .get(`${BACKEND_URL}/api/work/`)
+      .get(`${BACKEND_URL}/work/`)
       .then((res) => {
         const formatted = res.data.map((area) => ({
           title: area.title,
