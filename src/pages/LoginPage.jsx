@@ -18,14 +18,16 @@ function LoginPage() {
       const data = res.data;
 
       if (data.message === "Login successful") {
-        localStorage.setItem("token", "dummy-session-token");
-        localStorage.setItem("isAdmin", data.isAdmin || false);
+        // ✅ store token from backend (or fallback dummy)
+        localStorage.setItem("token", data.token || "dummy-session-token");
+        localStorage.setItem("isAdmin", String(data.isAdmin || false));
         localStorage.setItem("role", data.role || "user");
 
+        // ✅ redirect based on role
         if (data.isAdmin) {
           navigate("/admin-dashboard");
         } else {
-          navigate("/user-dashboard");
+          navigate("/home");   // ✅ go to Home instead of user-dashboard
         }
       } else {
         setMessage(data.error || "Login failed");
