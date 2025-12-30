@@ -1,22 +1,22 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { logoutUser } from "../services/api"; // import logout API
+import { logoutUser } from "../services/api";
 
 export default function NavBar() {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
 
-  // For demo: replace with real auth state (e.g., context or Redux)
-  const isLoggedIn = localStorage.getItem("token"); 
-  const isAdmin = localStorage.getItem("isAdmin"); // set this after login if user is admin
+  const isLoggedIn = localStorage.getItem("token");
+  const isAdmin = localStorage.getItem("isAdmin") === "true"; // ✅ parse correctly
 
   const handleLogout = async () => {
     try {
       await logoutUser();
       localStorage.removeItem("token");
       localStorage.removeItem("isAdmin");
-      navigate("/login"); // redirect to login after logout
+      localStorage.removeItem("role"); // ✅ clear role
+      navigate("/login");
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -25,7 +25,6 @@ export default function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
       <div className="container">
-        {/* NGO Brand Name */}
         <span
           className="navbar-brand fw-bold text-primary"
           style={{ cursor: "pointer" }}
@@ -34,7 +33,6 @@ export default function NavBar() {
           Helping Hands Foundation
         </span>
 
-        {/* Mobile Toggle */}
         <button
           className="navbar-toggler"
           type="button"
@@ -47,7 +45,6 @@ export default function NavBar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Navigation Links */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             {[
@@ -67,7 +64,9 @@ export default function NavBar() {
                   end={link.to === "/"}
                   className={({ isActive }) =>
                     "nav-link" +
-                    (isActive ? " fw-semibold text-primary border-bottom border-primary" : "")
+                    (isActive
+                      ? " fw-semibold text-primary border-bottom border-primary"
+                      : "")
                   }
                 >
                   {link.label}
@@ -75,7 +74,6 @@ export default function NavBar() {
               </li>
             ))}
 
-            {/* Show Register/Login if not logged in */}
             {!isLoggedIn && (
               <>
                 <li className="nav-item">
@@ -91,7 +89,6 @@ export default function NavBar() {
               </>
             )}
 
-            {/* Show Dashboards + Logout if logged in */}
             {isLoggedIn && (
               <>
                 <li className="nav-item">
@@ -117,12 +114,11 @@ export default function NavBar() {
               </>
             )}
 
-            {/* Language Switcher */}
             <li className="nav-item ms-3">
               <select
                 className="form-select form-select-sm"
+                value={i18n.language} // ✅ bind to current language
                 onChange={(e) => i18n.changeLanguage(e.target.value)}
-                defaultValue="en"
               >
                 <option value="en">English</option>
                 <option value="fr">French</option>

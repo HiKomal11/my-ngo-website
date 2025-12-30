@@ -3,7 +3,11 @@ import { registerUser } from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
-  const [formData, setFormData] = useState({ username: "", email: "", password: "" });
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
@@ -14,13 +18,15 @@ function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // ✅ Axios returns { data: {...} }
       const res = await registerUser(formData);
+      const data = res.data;
 
-      if (res.message === "Registration successful!") {
+      if (data.message === "User registered successfully") {
         setMessage("Registration successful! Redirecting to login...");
         setTimeout(() => navigate("/login"), 1500); // redirect after 1.5s
       } else {
-        setMessage(res.error || "Registration failed");
+        setMessage(data.error || "Registration failed");
       }
     } catch (err) {
       setMessage("Error: " + (err.response?.data?.error || err.message));
@@ -30,12 +36,17 @@ function RegisterPage() {
   return (
     <div className="container py-5 text-center">
       <h2 className="fw-bold text-primary">Register</h2>
-      <form onSubmit={handleSubmit} className="mt-3 mx-auto" style={{ maxWidth: "400px" }}>
+      <form
+        onSubmit={handleSubmit}
+        className="mt-3 mx-auto"
+        style={{ maxWidth: "400px" }}
+      >
         <div className="mb-3">
           <input
             name="username"
             placeholder="Username"
             className="form-control"
+            value={formData.username}
             onChange={handleChange}
             required
           />
@@ -46,6 +57,7 @@ function RegisterPage() {
             type="email"
             placeholder="Email"
             className="form-control"
+            value={formData.email}
             onChange={handleChange}
             required
           />
@@ -56,6 +68,7 @@ function RegisterPage() {
             type="password"
             placeholder="Password"
             className="form-control"
+            value={formData.password}
             onChange={handleChange}
             required
           />

@@ -14,21 +14,24 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // ✅ Axios returns { data: {...} }
       const res = await loginUser(formData);
+      const data = res.data;
 
-      if (res.message === "Login successful") {
+      if (data.message === "Login successful") {
         // Save login state
         localStorage.setItem("token", "dummy-session-token");
-        localStorage.setItem("isAdmin", res.isAdmin || false);
+        localStorage.setItem("isAdmin", data.isAdmin || false);
+        localStorage.setItem("role", data.role || "user");
 
         // Redirect based on role
-        if (res.isAdmin) {
+        if (data.isAdmin) {
           navigate("/admin-dashboard");
         } else {
           navigate("/user-dashboard");
         }
       } else {
-        setMessage(res.error || "Login failed");
+        setMessage(data.error || "Login failed");
       }
     } catch (err) {
       setMessage("Error: " + (err.response?.data?.error || err.message));
@@ -38,13 +41,19 @@ function LoginPage() {
   return (
     <div className="container py-5 text-center">
       <h2 className="fw-bold text-primary">Login</h2>
-      <form onSubmit={handleSubmit} className="mt-3 mx-auto" style={{ maxWidth: "400px" }}>
+      <form
+        onSubmit={handleSubmit}
+        className="mt-3 mx-auto"
+        style={{ maxWidth: "400px" }}
+      >
         <div className="mb-3">
           <input
             name="username"
             placeholder="Username"
             className="form-control"
+            value={formData.username}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="mb-3">
@@ -53,7 +62,9 @@ function LoginPage() {
             type="password"
             placeholder="Password"
             className="form-control"
+            value={formData.password}
             onChange={handleChange}
+            required
           />
         </div>
         <button type="submit" className="btn btn-primary w-100">
