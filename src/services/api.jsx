@@ -1,47 +1,46 @@
 import axios from "axios";
 
-// Centralized API instance
 const api = axios.create({
   baseURL:
     process.env.REACT_APP_API_BASE ||
-    "https://ngo-cms-backend-5oez.onrender.com/api",
+    "https://ngo-cms-backend-5oez.onrender.com",
   headers: { "Content-Type": "application/json" },
 });
 
-// ==================== AUTHENTICATION ====================
-export const registerUser = (data) => api.post("/register/", data);
-export const loginUser = (data) => api.post("/login/", data);
-export const logoutUser = () => api.post("/logout/");
-export const authStatus = () => api.get("/auth/status/");
+// ✅ Authentication
+export const registerUser = (data) => api.post("/api/register/", data);
+export const loginUser = (data) => api.post("/api/login/", data);
+export const logoutUser = () => api.post("/api/logout/");
+export const authStatus = () => api.get("/api/auth/status/");
 
-// ==================== BLOGS ====================
-export const getBlogs = () => api.get("/blog/");
-export const getBlogDetail = (id) => api.get(`/blog/${id}/`);
+// ✅ Blogs
+export const getBlogs = () => api.get("/api/blog/");
+export const getBlogDetail = (id) => api.get(`/api/blog/${id}/`);
 
-// ==================== DONATIONS ====================
-export const getDonations = () => api.get("/donations/");
+// ✅ Donations
+export const getDonations = () => api.get("/api/donations/");
 
-// ==================== CONTACT ====================
-export const submitContactForm = (data) => api.post("/contact/", data);
+// ✅ Contact
+export const submitContactForm = (data) => api.post("/api/contact/", data);
 
-// ==================== VOLUNTEERS ====================
-export const volunteerSignup = (data) => api.post("/volunteers/", data);
+// ✅ Volunteers
+export const volunteerSignup = (data) => api.post("/api/volunteers/", data);
 
-// ==================== PARTNER INQUIRIES ====================
-export const partnerInquiry = (data) => api.post("/partner-inquiries/", data);
+// ✅ Partner Inquiries
+export const partnerInquiry = (data) => api.post("/api/partner-inquiries/", data);
 
-// ==================== FUNDRAISE CAMPAIGNS ====================
-export const createFundraiseCampaign = (data) => api.post("/campaigns/", data);
+// ✅ Fundraise Campaigns
+export const createFundraiseCampaign = (data) => api.post("/api/campaigns/", data);
 
-// ==================== SUBSCRIPTIONS ====================
-export const getSubscribers = () => api.get("/subscribe/");
-export const addSubscriber = (data) => api.post("/subscribe/", data);
-export const deleteSubscriber = (id) => api.delete(`/subscribe/${id}/`);
+// ✅ Subscriptions
+export const getSubscribers = () => api.get("/api/subscribe/");
+export const addSubscriber = (data) => api.post("/api/subscribe/", data);
+export const deleteSubscriber = (id) => api.delete(`/api/subscribe/${id}/`);
 
-// ==================== CAMPAIGN PARTICIPATION ====================
+// ✅ Campaign Participation
 export const participateInProject = (data) =>
-  api.post("/campaign-participation/", data);
+  api.post("/api/campaign-participation/", data);
 
-// ==================== MEDIA ====================
-export const getMedia = () => api.get("/media/");
-export const uploadMedia = (data) => api.post("/media/", data);
+// ✅ Media (optional if you need uploads)
+export const getMedia = () => api.get("/api/media/");
+export const uploadMedia = (data) => api.post("/api/media/", data);

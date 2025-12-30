@@ -49,7 +49,7 @@ export default function App() {
     <Router>
       <Routes>
         {/* ✅ Authentication first */}
-        <Route path="/" element={<LoginPage />} />   {/* Default entry point */}
+        <Route path="/" element={<LoginPage />} />   
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
