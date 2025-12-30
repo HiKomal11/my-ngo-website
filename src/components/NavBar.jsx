@@ -8,14 +8,14 @@ export default function NavBar() {
   const { i18n } = useTranslation();
 
   const isLoggedIn = localStorage.getItem("token");
-  const isAdmin = localStorage.getItem("isAdmin") === "true"; // ✅ parse correctly
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
 
   const handleLogout = async () => {
     try {
       await logoutUser();
       localStorage.removeItem("token");
       localStorage.removeItem("isAdmin");
-      localStorage.removeItem("role"); // ✅ clear role
+      localStorage.removeItem("role");
       navigate("/login");
     } catch (error) {
       console.error("Logout failed:", error);
@@ -28,7 +28,7 @@ export default function NavBar() {
         <span
           className="navbar-brand fw-bold text-primary"
           style={{ cursor: "pointer" }}
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/home")} 
         >
           Helping Hands Foundation
         </span>
@@ -48,7 +48,7 @@ export default function NavBar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             {[
-              { to: "/", label: "Home" },
+              { to: "/home", label: "Home" },
               { to: "/about", label: "About Us" },
               { to: "/work", label: "Our Work" },
               { to: "/projects", label: "Projects" },
@@ -61,7 +61,6 @@ export default function NavBar() {
               <li className="nav-item" key={link.to}>
                 <NavLink
                   to={link.to}
-                  end={link.to === "/"}
                   className={({ isActive }) =>
                     "nav-link" +
                     (isActive
@@ -74,6 +73,7 @@ export default function NavBar() {
               </li>
             ))}
 
+            {/*  Show Register/Login when logged out */}
             {!isLoggedIn && (
               <>
                 <li className="nav-item">
@@ -89,8 +89,16 @@ export default function NavBar() {
               </>
             )}
 
+            {/* Show Logout when logged in */}
             {isLoggedIn && (
               <>
+                {isAdmin && (
+                  <li className="nav-item">
+                    <NavLink to="/admin-dashboard" className="nav-link">
+                      Admin Dashboard
+                    </NavLink>
+                  </li>
+                )}
                 <li className="nav-item">
                   <button
                     className="btn btn-outline-danger btn-sm ms-3"
@@ -102,10 +110,11 @@ export default function NavBar() {
               </>
             )}
 
+            {/*  Language Selector */}
             <li className="nav-item ms-3">
               <select
                 className="form-select form-select-sm"
-                value={i18n.language} // ✅ bind to current language
+                value={i18n.language}
                 onChange={(e) => i18n.changeLanguage(e.target.value)}
               >
                 <option value="en">English</option>
