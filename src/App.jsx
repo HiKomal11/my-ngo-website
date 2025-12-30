@@ -48,10 +48,13 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        {/* ✅ Public Routes */}
-        <Route path="/" element={<Layout><HomePage /></Layout>} />   {/* Home is root */}
+        {/* ✅ Authentication first */}
+        <Route path="/" element={<LoginPage />} />   {/* Default entry point */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+
+        {/* ✅ Public Home after login */}
+        <Route path="/home" element={<Layout><HomePage /></Layout>} />
 
         {/* ✅ Protected Routes */}
         <Route path="/about" element={<ProtectedRoute><Layout><AboutUs /></Layout></ProtectedRoute>} />
@@ -84,8 +87,8 @@ export default function App() {
         <Route path="/media/upload" element={<ProtectedRoute><Layout><MediaUploadForm /></Layout></ProtectedRoute>} />
         <Route path="/media/list" element={<ProtectedRoute><Layout><MediaList /></Layout></ProtectedRoute>} />
 
-        {/* ✅ Fallback → go to Home instead of Login */}
-        <Route path="*" element={<Layout><HomePage /></Layout>} />
+        {/* ✅ Fallback → go to Login */}
+        <Route path="*" element={<LoginPage />} />
       </Routes>
     </Router>
   );

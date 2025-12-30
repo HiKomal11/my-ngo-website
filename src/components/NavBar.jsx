@@ -28,7 +28,7 @@ export default function NavBar() {
         <span
           className="navbar-brand fw-bold text-primary"
           style={{ cursor: "pointer" }}
-          onClick={() => navigate("/")}   
+          onClick={() => navigate("/home")}  
         >
           Helping Hands Foundation
         </span>
@@ -48,7 +48,7 @@ export default function NavBar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             {[
-              { to: "/", label: "Home" },   
+              { to: "/home", label: "Home" },  
               { to: "/about", label: "About Us" },
               { to: "/work", label: "Our Work" },
               { to: "/projects", label: "Projects" },
