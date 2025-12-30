@@ -4,7 +4,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute"; // wrapper
 
-// Public Pages (only accessible after login)
+// Public Pages
 import HomePage from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import OurWork from "./pages/OurWork";
@@ -43,15 +43,15 @@ import MediaList from "./components/MediaList";
 import "./i18n";
 import "./styles/theme-overrides.css";
 import "./App.css";
+
 export default function App() {
   return (
     <Router>
       <Routes>
         {/* ✅ Public Routes */}
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<Layout><HomePage /></Layout>} />   {/* Home is root */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/home" element={<Layout><HomePage /></Layout>} />
 
         {/* ✅ Protected Routes */}
         <Route path="/about" element={<ProtectedRoute><Layout><AboutUs /></Layout></ProtectedRoute>} />
@@ -84,9 +84,23 @@ export default function App() {
         <Route path="/media/upload" element={<ProtectedRoute><Layout><MediaUploadForm /></Layout></ProtectedRoute>} />
         <Route path="/media/list" element={<ProtectedRoute><Layout><MediaList /></Layout></ProtectedRoute>} />
 
-        {/* Fallback */}
-        <Route path="*" element={<LoginPage />} />
+        {/* ✅ Fallback → go to Home instead of Login */}
+        <Route path="*" element={<Layout><HomePage /></Layout>} />
       </Routes>
     </Router>
+  );
+}
+
+/* Layout wrapper to avoid repeating header/nav/footer */
+function Layout({ children }) {
+  return (
+    <div className="d-flex flex-column min-vh-100">
+      <header className="text-center py-3 bg-primary text-light">
+        <h1 className="m-0">Helping Hands Foundation</h1>
+      </header>
+      <NavBar />
+      <main className="flex-grow-1">{children}</main>
+      <Footer />
+    </div>
   );
 }

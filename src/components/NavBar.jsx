@@ -28,7 +28,7 @@ export default function NavBar() {
         <span
           className="navbar-brand fw-bold text-primary"
           style={{ cursor: "pointer" }}
-          onClick={() => navigate("/home")} 
+          onClick={() => navigate("/")}   
         >
           Helping Hands Foundation
         </span>
@@ -48,7 +48,7 @@ export default function NavBar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             {[
-              { to: "/home", label: "Home" },
+              { to: "/", label: "Home" },   
               { to: "/about", label: "About Us" },
               { to: "/work", label: "Our Work" },
               { to: "/projects", label: "Projects" },
@@ -73,7 +73,7 @@ export default function NavBar() {
               </li>
             ))}
 
-            {/*  Show Register/Login when logged out */}
+            {/* Show Register/Login when logged out */}
             {!isLoggedIn && (
               <>
                 <li className="nav-item">
@@ -110,7 +110,7 @@ export default function NavBar() {
               </>
             )}
 
-            {/*  Language Selector */}
+            {/* Language Selector */}
             <li className="nav-item ms-3">
               <select
                 className="form-select form-select-sm"
